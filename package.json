@@ -12,6 +12,7 @@
     "build": "cross-env NODE_ENV=production remax build -t wechat"
   },
   "dependencies": {
+    "@remax/plugin-less": "^1.0.0",
     "react": "^16.14.0",
     "remax": "^2.9.1"
   },
