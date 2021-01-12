@@ -1,8 +1,14 @@
 import * as React from 'react';
 import { Button } from 'remax/wechat';
+import { ILoginResponse } from '@/hooks/useUserInfo';
 import './index.css';
 
-const LoginButton = ({ login, children }) => {
+interface IProps {
+  login: (res: ILoginResponse) => void,
+  children: React.ReactChild
+}
+
+const LoginButton = ({ login, children }: IProps) => {
   return (
     <Button
       className="login-button"

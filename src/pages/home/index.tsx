@@ -11,7 +11,7 @@ import logo from '@/assets/logo.png';
 import './index.css';
 
 const IndexPage = () => {
-  const [user, login] = useUserInfo();
+  const [userInfo, login] = useUserInfo();
 
   const handleAdd = () => {
     navigateTo({ url: '../new/index' });
@@ -21,11 +21,11 @@ const IndexPage = () => {
     <View className="page-todos">
       <View className="user">
         <LoginButton login={login}>
-          <Image className="avatar" src={user ? user.avatar : logo} />
+          <Image className="avatar" src={userInfo ? userInfo.avatarUrl : logo} />
         </LoginButton>
         <View className="nickname">
-          {user ? user.nickName + "'s" : 'My'} Todo List
-          {!user && <Text className="login-tip">(Tap to login ↑)</Text>}
+          {userInfo ? userInfo.nickName + "'s" : 'My'} Todo List
+          {!userInfo && <Text className="login-tip">(Tap to login ↑)</Text>}
         </View>
       </View>
     </View>

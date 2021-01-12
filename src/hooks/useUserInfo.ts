@@ -1,13 +1,25 @@
 import * as React from 'react';
 
-export default function useUserInfo() {
-  const [userInfo, setUserInfo] = React.useState(null);
+interface IUserInfo {
+  avatarUrl: string;
+  nickName: string;
+}
 
-  function login(response) {
+export interface ILoginResponse {
+  detail: {
+    userInfo: IUserInfo;
+  };
+}
+
+type IUserTuple = [IUserInfo | undefined, (res: ILoginResponse) => void]
+
+export default function useUserInfo(): IUserTuple {
+  const [userInfo, setUserInfo] = React.useState<IUserInfo>();
+
+  function login(response: ILoginResponse) {
     const { userInfo } = response.detail;
 
-    userInfo.avatar = userInfo.avatarUrl;
-    setUserInfo(response.detail.userInfo);
+    setUserInfo(userInfo);
   }
 
   return [userInfo, login];
