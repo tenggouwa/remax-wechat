@@ -13,10 +13,12 @@
   },
   "dependencies": {
     "@remax/plugin-less": "^1.0.0",
+    "lottie-miniprogram": "^1.0.11",
     "react": "^16.14.0",
     "remax": "^2.9.1"
   },
   "devDependencies": {
+    "classnames": "^2.2.6",
     "cross-env": "^7.0.2"
   }
 }

@@ -1,0 +1,108 @@
+.home {
+  /* display: flex;
+  align-items: center;
+  flex-direction: column; */
+  position: relative;
+  width: 100%;
+  height: 1624px;
+  overflow: hidden;
+  background-image: linear-gradient(180deg, #FBCCB3 0%, #F5937C 100%);
+}
+
+.title {
+  margin-top: 240px;
+  color: #FFF;
+  font-size: 60px;
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.sexCard {
+  position: absolute;
+  top: 434px;
+  left: 50%;
+  width: 360px;
+  height: 400px;
+
+  &.active {
+    z-index: 1;
+    opacity: 1;
+    transform: translateX(-50%);
+  }
+  &.unactive {
+    opacity: 0.5;
+    transform: translate(-35%, 32%);
+  }
+}
+
+.planet {
+  position: absolute;
+  z-index: 0;
+}
+
+.planet1 {
+  right: -156px;
+  bottom: -200px;
+  width: 830px;
+  height: 830px;
+}
+
+.planet2 {
+  top: -120px;
+  right: -100px;
+  width: 520px;
+  height: 520px;
+  animation: floatY 3s ease infinite both alternate-reverse;
+}
+
+.planet3 {
+  top: 400px;
+  left: -120px;
+  width: 466px;
+  height: 302px;
+  animation: floatX 3s ease infinite both alternate-reverse;
+}
+
+.planetBig {
+  left: 50%;
+  bottom: -1780rpx;
+  width: 2400px;
+  height: 2400px;
+  transform: translateX(-50%);
+  animation: rotating 80s linear infinite;
+}
+
+#edifier {
+  position: absolute;
+  left: 45%;
+  bottom: 200px;
+  width: 380px;
+  height: 450px;
+  transform: translateX(-50%);
+}
+
+@keyframes floatX {
+  0% {
+    transform: translateX(-5%);
+  }
+  100% {
+    transform: translateX(5%);
+  }
+}
+
+@keyframes floatY {
+  0% {
+    transform: translateY(-5%);
+  }
+  100% {
+    transform: translateY(5%);
+  }
+}
+
+@keyframes rotating {
+  100% {
+    transform: translateX(-50%) rotate(-360deg);
+  }
+}

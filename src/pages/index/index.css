@@ -14,6 +14,36 @@
   margin-top: 64px;
 }
 
+.user {
+  display: flex;
+  flex-shrink: 0;
+  padding: 30px;
+  color: #FFF;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-tip {
+  display: inline-block;
+  font-size: 20rpx;
+  color: #999;
+}
+
+.avatar {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  background-color: #FFF;
+  align-self: center;
+}
+
+.nickname {
+  padding-top: 40rpx;
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: 100;
+}
+
 .header {
   padding-top: 30%;
   background-color: #282c34;

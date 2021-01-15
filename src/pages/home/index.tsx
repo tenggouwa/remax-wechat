@@ -1,35 +1,72 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
   Image,
+  Canvas,
   navigateTo,
+  createSelectorQuery,
 } from 'remax/wechat';
-import useUserInfo from '@/hooks/useUserInfo';
-import LoginButton from '@/components/LoginButton';
-import logo from '@/assets/logo.png';
-import './index.css';
+import { usePageEvent } from 'remax/macro';
+import classNames from 'classnames'
+import lottie from 'lottie-miniprogram'
+import './index.less';
 
-const IndexPage = () => {
-  const [userInfo, login] = useUserInfo();
+type ISex = 'boy' | 'girl'
 
-  const handleAdd = () => {
-    navigateTo({ url: '../new/index' });
-  };
+const HomePage = () => {
+  const [sex, setSex] = useState<ISex>('boy')
+
+  usePageEvent('onReady', () => {
+    createSelectorQuery().select('#edifier').node(res => {
+      const canvas = res.node
+      const context = canvas.getContext('2d')
+      canvas.width = 300
+      canvas.height = 300
+      lottie.setup(canvas)
+      lottie.loadAnimation({
+        loop: true,
+        autoplay: true,
+        animationData: require('../../assets/lotties/man.js'),
+        rendererSettings: {
+          context,
+        }
+      })
+    }).exec()
+  })
+
+  const chooseSex = (sex: ISex) => {
+    setSex(sex)
+  }
 
   return (
-    <View className="page-todos">
-      <View className="user">
-        <LoginButton login={login}>
-          <Image className="avatar" src={userInfo ? userInfo.avatarUrl : logo} />
-        </LoginButton>
-        <View className="nickname">
-          {userInfo ? userInfo.nickName + "'s" : 'My'} Todo List
-          {!userInfo && <Text className="login-tip">(Tap to login ↑)</Text>}
-        </View>
-      </View>
+    <View className="home">
+      <View className="title">您是？</View>
+      <Image className="planet planet1" src="/imgs/planet1.png"></Image>
+      <Image className="planet planet2" src="/imgs/planet2.png"></Image>
+      <Image className="planet planet3" src="/imgs/planet3.png"></Image>
+      <Image className="planet planetBig" src="/imgs/planet.png"></Image>
+      <Image
+        className={classNames(
+          'sexCard',
+          {'active': sex === 'boy'},
+          {'unactive': sex !== 'boy'},
+        )}
+        src="/imgs/card_boy.png"
+        onTap={() => chooseSex('boy')}
+      ></Image>
+      <Image
+        className={classNames(
+          'sexCard',
+          {'active': sex === 'girl'},
+          {'unactive': sex !== 'girl'},
+        )}
+        src="/imgs/card_girl.png"
+        onTap={() => chooseSex('girl')}
+      ></Image>
+      <Canvas id="edifier" type="2d"></Canvas>
     </View>
   );
 };
 
-export default IndexPage;
+export default HomePage;
