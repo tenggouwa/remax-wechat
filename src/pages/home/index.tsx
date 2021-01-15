@@ -14,29 +14,34 @@ import './index.less';
 
 type ISex = 'boy' | 'girl'
 
+const initLottie = (sex: ISex) => {
+  createSelectorQuery().select('#edifier').node(res => {
+    const canvas = res.node
+    const context = canvas.getContext('2d')
+    canvas.width = 300
+    canvas.height = 300
+    lottie.setup(canvas)
+    lottie.loadAnimation({
+      loop: true,
+      autoplay: true,
+      animationData: require(`../../assets/lotties/${sex}.js`),
+      rendererSettings: {
+        context,
+      }
+    })
+  }).exec()
+}
+
 const HomePage = () => {
   const [sex, setSex] = useState<ISex>('boy')
 
   usePageEvent('onReady', () => {
-    createSelectorQuery().select('#edifier').node(res => {
-      const canvas = res.node
-      const context = canvas.getContext('2d')
-      canvas.width = 300
-      canvas.height = 300
-      lottie.setup(canvas)
-      lottie.loadAnimation({
-        loop: true,
-        autoplay: true,
-        animationData: require('../../assets/lotties/man.js'),
-        rendererSettings: {
-          context,
-        }
-      })
-    }).exec()
+    initLottie(sex)
   })
 
   const chooseSex = (sex: ISex) => {
     setSex(sex)
+    initLottie(sex)
   }
 
   return (
